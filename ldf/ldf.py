@@ -11,6 +11,16 @@ class TType(Enum):
     REAL = 1  # Start at 0 - 0.2 - 1 - 3.2 - 3.03 - and so on
 
 
+class LongitudinalVariable:
+    def __init__(self, ivar):
+        self.data = pd.DataFrame()
+
+        for i in range(len(ivar)):
+            self.data.append([ivar[i]])
+            self.t = self.t.append(ivar[i][0])
+            self.data = self.data.append(ivar[i][1])
+
+
 class LDF:
     def __init__(self):
         self.format = 'ldf'
@@ -30,11 +40,9 @@ class LDF:
         self.temporalType = data.temporalType
         self.metaData = data.metaData
         self.data = data.data
-        return True
 
     def write(self, ofile):
         pickle.dump(self, open(ofile, 'wb'))
-        return True
 
     def describe(self):
         return self.temporalType, self.metaData
@@ -42,6 +50,9 @@ class LDF:
     def converttype(self, ttype=TType.FORMATED):
         if self.temporalType == ttype:
             pass
+
+    def add_metadata(self, imeta):
+        pass
 
     def add_entry(self, idx, varname, idata):
         pass
@@ -73,6 +84,12 @@ class LDF:
     def transform_to_dense(self, ofile):
         pass
 
+    def import_sparse(self, ifile, imeta):
+        pass
+
+    def import_dense(self, ifile, imeta):
+        pass
+
     def merge(self, ildf):
         pass
 
@@ -82,5 +99,5 @@ class LDF:
     def split(self, idlist):
         pass
 
-    def _convertTime(self, itime):
+    def _converttime(self, itime):
         pass
