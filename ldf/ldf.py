@@ -1,5 +1,4 @@
 from enum import Enum
-import numpy as np
 import datetime
 import pandas as pd
 import cPickle as pickle
