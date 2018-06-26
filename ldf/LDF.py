@@ -1,39 +1,27 @@
-from enum import Enum
 import datetime
 import pandas as pd
-import cPickle as pickle
-import sys
+try:
+    import cPickle as pickle
+except:
+    import pickle
 
-
-class TType(Enum):
-    FORMATED = 0  # Default 2016-09-19:18:00:00
-    REAL = 1  # Start at 0 - 0.2 - 1 - 3.2 - 3.03 - and so on
-
-
-class LongitudinalVariable:
-    def __init__(self, ivar):
-        self.data = pd.DataFrame()
-
-        for i in range(len(ivar)):
-            self.data.append([ivar[i]])
-            self.t = self.t.append(ivar[i][0])
-            self.data = self.data.append(ivar[i][1])
-
+from LongitudinalVariable import LongitudinalVariable as lv
+from TType import TType
 
 class LDF:
     def __init__(self):
         self.format = 'ldf'
         self.temporalType = TType.FORMATED
-        self.metaData = None
+        self.metaData = None #metaData will be stored in a regular python 2d array first column being
         self.data = None
 
     def read(self, ifile):
         data = pickle.load(open(ifile, 'rb'))
         if hasattr(data, 'format'):
             if data.format != 'ldf':
-                sys.exit('Invalid format')
+                exit('Invalid format')
         else:
-            sys.exit('Invalid format')
+            exit('Invalid format')
 
         self.format = 'ldf'
         self.temporalType = data.temporalType
