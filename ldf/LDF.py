@@ -71,20 +71,32 @@ class LDF:
     def transform_to_dense(self, ofile):
         pass
 
-    def import_sparse(self, ifile, imeta):
+    def import_sparse(self, ifile, imeta, delim=','):
         pass
 
-    def import_dense(self, ifile, imeta):
+    def import_dense(self, ifile, imeta, delim=','):
         pass
 
     def merge(self, ildf):
+        '''
+        Take Union of dataset
+        :param ildf:
+        :return:
+        '''
         pass
 
     def join(self, ildf):
+        '''
+        Take intersection of dataset
+        :param ildf:
+        :return:
+        '''
         pass
 
     def split(self, idlist):
-        pass
-
-    def _converttime(self, itime):
+        '''
+        Return dataset using a list of ids
+        :param idlist:
+        :return:
+        '''
         pass
