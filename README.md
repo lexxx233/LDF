@@ -1,7 +1,7 @@
 # TRUE LONGITUDINAL DATA FORMAT (LDF)
 
 ## Why this exists
-There isn't an universally agreed upon longitudinal data file format. Longitudinal Data is often stored in seprated rows for each data entry which bloats the file With repetitive elements and causes unnecessary inefficiency in data reading. Longitudinal data can also be stored in a dense table format; however, this can leads to a lot of empty cells for missing longitudinal variables. Moreover, the in-uniformity in longitudinal data format makes sharing and processing a longitudinal data file extremely cumbersome. This is a as-simple-as-possible attempt to standardize the data format for "true" multivariate longitudinal data in which each longitudinal variable is observed at different frequency and time intervals.
+There isn't an universally agreed upon longitudinal data file format. Longitudinal Data is often stored in separated rows for each data entry which bloats the file With repetitive elements and causes unnecessary inefficiency in data reading. Longitudinal data can also be stored in a dense table format; however, this can leads to excessive empty cells for missing longitudinal variable entries. Moreover, the in-uniformity in longitudinal data format makes sharing and processing a longitudinal data file extremely cumbersome. This is a as-simple-as-possible attempt to standardize the data format for "true" multivariate longitudinal data in which each longitudinal variable is observed at different frequency and time intervals.
 
 ## General Information about LDF Data Format
 file.LDF = {Metadata, Data}
@@ -48,8 +48,7 @@ Time point information is stored in the form of datetime ISO 8601 format (‘YYY
 The data format can be stored as a csv file. When ldf data is exported to csv, there will be 2 associated files. 1 - the metadata and 2 - the data itself
 
 ## Other information
-##### NOTE: While LDF format is intended to use on true longitudinal data where each longitudinal variables is sampled at different frequency. It will also work for regular time series data. However, this is probably not preferable since the data could be stored more compactly  using a regular table format.
+##### NOTE: While LDF format is intended to use on true longitudinal data where each longitudinal variable is sampled at different frequency. LDF format will also work for storing regular time series data. However, this is probably not preferable since the data could be stored more efficently using a regular dense table format.
 
 ## LDF package
-This package provides standard routines for manipulating the ldf data format including merging and joining different ldf datasets.
-
+This package provides standard routines for manipulating the ldf data format including converting other data type to ldf, merging, joining and splitting different ldf datasets. Documentation can be found here
