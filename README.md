@@ -33,6 +33,7 @@ ID | longitudinal_var_name1 | time;values
 e.g.  
 
 PT0001      BMI    0;23.4     3.5;24.1      8.9;23.9      ...
+
 PT0001      Weight      0;156.00      1.2;165.10      3.5;159.45      ...
 
 ### Temporal Type
