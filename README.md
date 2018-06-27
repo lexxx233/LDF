@@ -30,7 +30,7 @@ The data portion of ldf is also tab delimited. associated times and values are d
 
 ID | longitudinal_var_name1 | Data type | time;values
 
-Data can be of 3 types - real, integer, and nominal. Below is an examples of 2 row entries
+Data can be of 2 types - numeric and nominal. Below is an examples of 2 row entries
 
 PT0001      BMI    numeric      0;23.4     3.5;24.1      8.9;23.9      ...
 
@@ -41,7 +41,7 @@ PT0001      Weight      numeric     0;156.00      1.2;165.10      3.5;159.45    
 Time point information is stored in the form of real numbers. There is no constraint on negative and/or fractional values in real time. This time value type provides temporal order and interval between observations in term of real  number
 
 #### Formatted temporal type
-Time point information is stored in the form of datetime ISO 8601 format (‘YYYY-MM-DD’). In the case of formatted temporal temporalType. There exist a reference date in the meta data and the rest of the data will be store in day increments or decrements of the reference date.  
+Time point information is stored in the form of datetime ISO 8601 format (‘YYYY-MM-DD’). In the case of formatted temporal temporalType. There exist a reference date in the meta data and the rest of the data will be store in Real increments or decrements of the reference date.  
 
 ## Save to CSV
 
