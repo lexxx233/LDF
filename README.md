@@ -28,13 +28,13 @@ The rest of the metadata is simply a table, and is tab delimited. The first line
 ### Data
 The data portion of ldf is also tab delimited. associated times and values are delimited using semi colon. There is no header.
 
-ID | longitudinal_var_name1 | time;values
+ID | longitudinal_var_name1 | Data type | time;values
 
-e.g.  
+Data can be of 3 types - real, integer, and nominal. Below is an examples of 2 row entries
 
-PT0001      BMI    0;23.4     3.5;24.1      8.9;23.9      ...
+PT0001      BMI    numeric      0;23.4     3.5;24.1      8.9;23.9      ...
 
-PT0001      Weight      0;156.00      1.2;165.10      3.5;159.45      ...
+PT0001      Weight      numeric     0;156.00      1.2;165.10      3.5;159.45      ...
 
 ### Temporal Type
 #### Real temporal type
