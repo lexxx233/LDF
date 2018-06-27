@@ -1,7 +1,7 @@
 # TRUE LONGITUDINAL DATA FORMAT (LDF)
 
 ## Why this exists
-There isn't an universally agreed upon longitudinal data file format. Longitudinal Data is often stored in separated rows for each data entry which bloats the file With repetitive elements and causes unnecessary inefficiency in data reading. Longitudinal data can also be stored in a dense table format; however, this can leads to excessive empty cells for missing longitudinal variable entries. Moreover, the in-uniformity in longitudinal data format makes sharing and processing a longitudinal data file extremely cumbersome. This is a as-simple-as-possible attempt to standardize the data format for "true" multivariate longitudinal data in which each longitudinal variable is observed at different frequency and time intervals.
+There isn't an universally agreed upon longitudinal data file format. Longitudinal Data is often stored in separated rows for each data entry which bloats the file with repetitive elements and causes unnecessary inefficiency in data reading. Longitudinal data are also stored in a dense table format; however, this leads to excessive empty cells for missing longitudinal variable entries. Moreover, the in-uniformity in longitudinal data format makes sharing and processing longitudinal data files extremely cumbersome. This is a as-simple-as-possible attempt to standardize the data format for "true" multivariate longitudinal data in which each longitudinal variable is observed at different frequency and time intervals.
 
 ## General Information about LDF Data Format
 file.LDF = {Metadata, Data}
