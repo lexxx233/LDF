@@ -1,22 +1,24 @@
 import datetime
 import pandas as pd
+from ldf.LongitudinalVariable import LongitudinalVariable as lv
+from ldf.TType import TType
 try:
     import cPickle as pickle
 except:
     import pickle
 
-from LongitudinalVariable import LongitudinalVariable as lv
-from TType import TType
 
 class LDF:
     def __init__(self):
         self.format = 'ldf'
         self.temporalType = TType.FORMATED
+        self.refTime = None
         self.metaData = None #metaData will be stored in a regular python 2d array first column being
         self.data = None
 
     def read(self, ifile):
         data = pickle.load(open(ifile, 'rb'))
+
         if hasattr(data, 'format'):
             if data.format != 'ldf':
                 exit('Invalid format')
@@ -26,6 +28,7 @@ class LDF:
         self.format = 'ldf'
         self.temporalType = data.temporalType
         self.metaData = data.metaData
+        self.refTime = data.refTime
         self.data = data.data
 
     def write(self, ofile):
@@ -80,7 +83,7 @@ class LDF:
     def merge(self, ildf):
         '''
         Take Union of dataset
-        :param ildf:
+        :param ildf: the input ldf to merge with this dataset
         :return:
         '''
         pass

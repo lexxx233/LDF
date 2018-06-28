@@ -10,7 +10,6 @@ class LongitudinalVariable:
 
     def remove_t(self, tvars):
         '''
-
         :param tvars: array of time t
         :return:
         '''
