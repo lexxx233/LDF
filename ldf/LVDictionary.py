@@ -1,22 +1,61 @@
-from ldf.DType import  DType
+from ldf.DType import DType
+
 
 class LVDictionary:
     lvdict = {}
 
-    @staticmethod
-    def insertVar(varName, varType=DType.NUMERIC, varList=None):
-        if varType == DType.NOMINAL:
-            templist = {}
-            tempstring = str(varList)
-            tok = tempstring.replace("\n", "").split(";")
-            i = 0
-            for item in tok:
-                templist[item] = i
-                i += 1
-            LVDictionary.lvdict[varName] = [DType.NOMINAL, templist]
-        else:
-            LVDictionary.lvdict[varName] = [DType.NUMERIC]
+    def __init__(self):
+        return
 
     @staticmethod
-    def vars():
+    def insertvar(varname, vartype=DType.NUMERIC, varlist=None):
+        if vartype == DType.NOMINAL:
+            tempstring = str(varlist)
+            tok = tempstring.replace("\n", "").split(";")
+            LVDictionary.lvdict[varname] = [DType.NOMINAL, tok]
+        else:
+            LVDictionary.lvdict[varname] = [DType.NUMERIC]
+
+    @staticmethod
+    def keys():
         return LVDictionary.lvdict.keys()
+
+    @staticmethod
+    def keyidx(varname):
+        return LVDictionary.lvdict.keys().index(varname)
+
+    @staticmethod
+    def vartype(varname):
+        return LVDictionary.lvdict[varname][0]
+
+    @staticmethod
+    def values():
+        return LVDictionary.lvdict.values()
+
+    @staticmethod
+    def getnomval(varname, varvalue):
+        """
+        Get nominal variable value based on nominal value
+
+        :param varname:
+        :param varvalue:
+        :return:
+        """
+        try:
+            return LVDictionary.lvdict[varname].index(varvalue)
+        except:
+            return -1
+
+    @staticmethod
+    def getnomvar(varname, varvalue):
+        """
+        Get nominal variable name based on index value
+
+        :param varname:
+        :param varvalue:
+        :return:
+        """
+        try:
+            return LVDictionary.lvdict[varname][varvalue]
+        except:
+            return -1

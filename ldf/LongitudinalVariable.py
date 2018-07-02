@@ -9,10 +9,11 @@ class LongitudinalVariable:
         self.data = self.data.append(pd.DataFrame(ivar, columns=list('td')))
 
     def remove_t(self, tvars):
-        '''
-        :param tvars: array of time t
+        """
+
+        :param tvars:
         :return:
-        '''
+        """
         self.data = self.data.drop(self.findarray(self.data.loc[:, 't'].tolist(), tvars))
 
     def select_range(self, tstart, tend):
