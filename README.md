@@ -3,6 +3,9 @@
 ## Why this exists
 Longitudinal datasets are not very portable. There isn't an universally agreed upon longitudinal data file format. Longitudinal data are often stored in separated rows for each data entry which bloats the file with repetitive elements and causes unnecessary inefficiency in data reading. Longitudinal data are also stored in a dense table format; however, this leads to excessive empty cells for missing longitudinal variable entries. Other solutions are sometime very framework dependent. Moreover, the in-uniformity in longitudinal data format makes sharing and processing different longitudinal data files extremely cumbersome. This is a as-simple-as-possible language/framework agnostic solution to standardize the data format for "true" multivariate longitudinal data in which each longitudinal variable is observed at different frequency and time intervals.
 
+## About LDF package
+This package provides standard routines for manipulating the ldf data format including converting some other data format into ldf, merging, joining and splitting different ldf dataset. The package also contain convenient methods to read data directly into pandas matrices. Documentation can be found here
+
 ## General Information about LDF Data Format
 file.LDF = {Metadata, Data}
 
@@ -60,6 +63,3 @@ The data format can be stored as a csv file. When ldf data is exported to csv, t
 
 ## Other information
 ##### NOTE: While LDF format is intended to use on true longitudinal data where each longitudinal variable is sampled at different frequency. LDF format will also work for storing regular time series data. However, this is probably not preferable since the data could be stored more efficently using a regular dense table format.
-
-## About LDF package
-This package provides standard routines for manipulating the ldf data format including converting some other data format into ldf, merging, joining and splitting different ldf dataset. The package also contain convenient methods to read data directly into pandas matrices. Documentation can be found here

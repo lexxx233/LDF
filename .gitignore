@@ -1,2 +1,6 @@
 .idea
 *.xml
+data.csv
+example.py
+meta.csv
+meta_write.csv

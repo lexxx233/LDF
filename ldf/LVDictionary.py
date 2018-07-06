@@ -10,9 +10,7 @@ class LVDictionary:
     @staticmethod
     def insertvar(varname, vartype=DType.NUMERIC, varlist=None):
         if vartype == DType.NOMINAL:
-            tempstring = str(varlist)
-            tok = tempstring.replace("\n", "").split(";")
-            LVDictionary.lvdict[varname] = [DType.NOMINAL, tok]
+            LVDictionary.lvdict[varname] = [DType.NOMINAL, varlist]
         else:
             LVDictionary.lvdict[varname] = [DType.NUMERIC]
 
@@ -41,8 +39,10 @@ class LVDictionary:
         :param varvalue:
         :return:
         """
+        LVDictionary._nomcheck(varname)
+
         try:
-            return LVDictionary.lvdict[varname].index(varvalue)
+            return LVDictionary.lvdict[varname][1].index(varvalue)
         except:
             return -1
 
@@ -55,7 +55,19 @@ class LVDictionary:
         :param varvalue:
         :return:
         """
+        LVDictionary._nomcheck(varname)
+
         try:
-            return LVDictionary.lvdict[varname][varvalue]
+            if not(varvalue >= 0 & varvalue < len(LVDictionary.lvdict[varname][1])):
+                exit("out of range for nominal variable array")
+            return LVDictionary.lvdict[varname][1][varvalue]
         except:
             return -1
+
+    @staticmethod
+    def _nomcheck(varname):
+        if varname not in LVDictionary.lvdict.keys():
+            exit(varname + " does not exist")
+
+        if LVDictionary.lvdict[varname][0] != DType.NOMINAL:
+            exit(varname + " is not of Nominal Type")

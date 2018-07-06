@@ -1,5 +1,3 @@
-import datetime
-import pandas as pd
 from ldf.LongitudinalVariable import LongitudinalVariable as lv
 from ldf.LVDictionary import LVDictionary as lvd
 from ldf.TType import TType
@@ -16,8 +14,8 @@ class LDF:
         self.format = 'ldf'
         self.temporalType = TType.FORMATTED
         self.refTime = None
-        self.metaData = None
-        self.header = None
+        self.metaData = {}
+        self.metaHeader = []
         self.data = {}
 
     def read(self, ifile):
@@ -32,7 +30,7 @@ class LDF:
         self.format = 'ldf'
         self.temporalType = data.temporalType
         self.metaData = data.metaData
-        self.header = data.header
+        self.metaHeader = data.metaHeader
         self.refTime = data.refTime
         self.data = data.data
 
@@ -74,7 +72,7 @@ class LDF:
 
         #Get header for metadata
         header = scrub(lines[3]).split("\t")
-        self.header = header[1:]
+        self.metaHeader = header[1:]
 
         self.metaData = {}
         tempidx = 0
@@ -104,17 +102,16 @@ class LDF:
             return string + "\n"
 
         f = open(csvfile, 'w+')
-        # File extension
+
         f.write(writeln("ldf"))
-        # Temporal Type
         f.write(writeln(TType.toStr(self.temporalType)))
         # Reference Date
-        if TType == TType.REAL:
-            f.write("\n")
-        elif TType == TType.FORMATTED:
+        if self.temporalType == TType.REAL:
+            f.write(writeln(""))
+        elif self.temporalType == TType.FORMATTED:
             f.write(writeln("0001-01-01"))
 
-        f.write(writeln("ID" + "\t" + formatcsv(self.header)))
+        f.write(writeln("ID" + "\t" + formatcsv(self.metaHeader)))
         for ik in self.metaData:
             f.write(writeln(ik + "\t" + formatcsv(self.metaData[ik])))
 
@@ -123,45 +120,33 @@ class LDF:
         for ik in lvd.keys():
             if lvd.vartype(ik) == DType.NOMINAL:
                 f.write(writeln(ik + "\t" + "nominal" + "\t" + formatcsv(lvd.lvdict[ik][1], ";")))
-            else:
+            elif lvd.vartype(ik) == DType.NUMERIC:
                 f.write(writeln(ik + "\t" + "numeric"))
 
-    def read_data(self, ifile):
+    def read_csvdata(self, ifile):
         def scrub(istring):
             return istring.replace("\n", "")
 
+        self.data = {}
+        for i in self.metaData.keys():
+            pass
         f = open(ifile, 'r')
-
-        if self.metaData == None:
-            exit("Metadata cannot be empty")
 
         lines = f.readlines()
         for line in lines:
             l = scrub(line).split("\t")
-            if l[0] not in self.data.keys():
-                self.data[l[0]] = [lv() for x in range(len(lvd.lvdict))]
+            if l[0] not in self.metaData.keys():
+                exit("Sample ID <" + l[0] + "> was not declared in metadata")
             if l[1] not in lvd.keys():
                 exit("Variable was not declared in metadata")
 
-    def write_data(self, ofile):
+
+        f.close()
+
+    def write_csvdata(self, ofile):
         pass
 
-    def transform_from_sparse(self, ifile):
-        pass
-
-    def transform_from_dense(self, ifile):
-        pass
-
-    def transform_to_sparse(self, ofile):
-        pass
-
-    def transform_to_dense(self, ofile):
-        pass
-
-    def import_sparse(self, ifile, imeta, delim=','):
-        pass
-
-    def import_dense(self, ifile, imeta, delim=','):
+    def import_from_row_data(self, ifile, imeta, delim=','):
         pass
 
     def merge(self, ildf):
