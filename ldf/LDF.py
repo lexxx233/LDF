@@ -12,7 +12,7 @@ except:
 class LDF:
     def __init__(self):
         self.format = 'ldf'
-        self.temporalType = TType.FORMATTED
+        self.temporalType = TType.REAL
         self.refTime = None
         self.metaData = {}
         self.metaHeader = []
@@ -38,7 +38,7 @@ class LDF:
         pickle.dump(self, open(ofile, 'wb'))
 
     def describe(self):
-        return self.temporalType, self.metaData
+        return self.temporalType, self.metaHeader, self.metaData.keys()
 
     def converttype(self, ttype=TType.FORMATTED):
         if self.temporalType == ttype:
@@ -129,16 +129,19 @@ class LDF:
 
         self.data = {}
         for i in self.metaData.keys():
-            pass
-        f = open(ifile, 'r')
+            self.data[i] = {}
+            for j in lvd.keys():
+                self.data[i][j] = lv()
 
+        f = open(ifile, 'r')
         lines = f.readlines()
         for line in lines:
             l = scrub(line).split("\t")
             if l[0] not in self.metaData.keys():
                 exit("Sample ID <" + l[0] + "> was not declared in metadata")
             if l[1] not in lvd.keys():
-                exit("Variable was not declared in metadata")
+                exit("Variable <" + l[1] + "> was not declared in metadata")
+
 
 
         f.close()

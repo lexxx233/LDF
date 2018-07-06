@@ -3,8 +3,8 @@ from datetime import datetime
 
 
 class TType(Enum):
-    FORMATTED = 0  # Default 2016-09-19
-    REAL = 1  # Start at 0 - 0.2 - 1 - 3.2 - 3.03 - and so on
+    FORMATTED = 0  # Default 0001-01-01
+    REAL = 1
 
     @staticmethod
     def formated2real(itime):
@@ -20,3 +20,13 @@ class TType(Enum):
             return "REAL"
         elif ttype == TType.FORMATTED:
             return "FORMATTED"
+
+    @staticmethod
+    def daybetweenstr(d1, d2):
+        d1 = datetime.strptime(d1, "%Y-%m-%d")
+        d2 = datetime.strptime(d2, "%Y-%m-%d")
+        return abs((d2-d1).days)
+
+    @staticmethod
+    def daybetween(d1, d2):
+        return abs((d2-d1).days)

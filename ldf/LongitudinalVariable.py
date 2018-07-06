@@ -6,7 +6,7 @@ class LongitudinalVariable:
         self.data = pd.DataFrame(ivar, columns=list('td'))
 
     def append(self, ivar):
-        self.data = self.data.append(pd.DataFrame([ivar], columns=list('td')))
+        self.data = self.data.append(pd.DataFrame([ivar], columns=list('td')), ignore_index=True)
 
     def remove_t(self, tvars):
         """
